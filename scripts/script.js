@@ -40,16 +40,22 @@ function getResult(computer, user, roundWinner) {
     return roundWinner;
 }
 
-function roundGame() {
+function roundGame(id) {
     const roundWinner = { machine: 0, man: 0 };
     for (let index = 0; index < 5; index++) {
         playGame(roundWinner);
     }
     if (roundWinner.machine > roundWinner.man) {
-        console.log(`You loose by ${roundWinner.man} : ${roundWinner.machine}`);
+        // console.log(`You loose by ${roundWinner.man} : ${roundWinner.machine}`);
+        let text = `You loose by ${roundWinner.man} : ${roundWinner.machine}`;
+        id.innerText = text;
     } else if (roundWinner.man > roundWinner.machine) {
-        console.log(`You won by ${roundWinner.man} : ${roundWinner.machine}`);
+        // console.log(`You won by ${roundWinner.man} : ${roundWinner.machine}`);
+        let text = `You won by ${roundWinner.man} : ${roundWinner.machine}`;
+        id.innerText = text;
     }
 }
-
-roundGame();
+document.addEventListener('DOMContentLoaded', (event) => {
+    let id = document.querySelector('#announce-winner');
+    roundGame(id);
+});
