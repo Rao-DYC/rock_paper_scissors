@@ -8,28 +8,48 @@ function getUserChoice() {
     return prompt('Please type Rock, Paper or Scissors.');
 }
 
-function playGame() {
+function playGame(roundWinner) {
     const computer = getComputerChoice().toLowerCase();
     const user = getUserChoice().toLowerCase();
 
     console.log([computer, user]);
+
+    return getResult(computer, user, roundWinner);
+}
+
+function getResult(computer, user, roundWinner) {
     if (user === computer) {
-        return `It's a tie.`
+        // return `It's a tie.`
     } else if (
-        (user === 'paper' && computer === 'rock') || 
-        (user === 'scissors' && computer === 'paper') || 
+        (user === 'paper' && computer === 'rock') ||
+        (user === 'scissors' && computer === 'paper') ||
         (user === 'rock' && computer === 'scissors')
     ) {
-        return `${user.charAt(0).toUpperCase() + user.slice(1)} beats ${computer.charAt(0).toUpperCase() + computer.slice(1)}. You win!`;
+        // return `${user.charAt(0).toUpperCase() + user.slice(1)} beats ${computer.charAt(0).toUpperCase() + computer.slice(1)}. You win!`;
+        roundWinner.man++;
     } else if (
-        (computer === 'paper' && user === 'rock') || 
-        (computer === 'scissors' && user === 'paper') || 
+        (computer === 'paper' && user === 'rock') ||
+        (computer === 'scissors' && user === 'paper') ||
         (computer === 'rock' && user === 'scissors')
     ) {
-        return `${computer.charAt(0).toUpperCase() + computer.slice(1)} beats ${user.charAt(0).toUpperCase() + user.slice(1)}. You loose!`;
+        // return `${computer.charAt(0).toUpperCase() + computer.slice(1)} beats ${user.charAt(0).toUpperCase() + user.slice(1)}. You loose!`;
+        roundWinner.machine++;
     } else {
-        return `Wrong input given.`;
+        // return `Wrong input given.`;
+    }
+    return roundWinner;
+}
+
+function roundGame() {
+    const roundWinner = { machine: 0, man: 0 };
+    for (let index = 0; index < 5; index++) {
+        playGame(roundWinner);
+    }
+    if (roundWinner.machine > roundWinner.man) {
+        console.log(`You loose by ${roundWinner.man} : ${roundWinner.machine}`);
+    } else if (roundWinner.man > roundWinner.machine) {
+        console.log(`You won by ${roundWinner.man} : ${roundWinner.machine}`);
     }
 }
 
-console.log(playGame());
+roundGame();
