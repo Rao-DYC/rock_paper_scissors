@@ -26,7 +26,7 @@ function playGame() {
         (computer === 'scissors' && user === 'paper') || 
         (computer === 'rock' && user === 'scissors')
     ) {
-        return `${computer.charAt(0).toUpperCase() + computer.slice(1)} beats ${user.charAt(0).toUpperCase() + user.slice(1)}. You win!`;
+        return `${computer.charAt(0).toUpperCase() + computer.slice(1)} beats ${user.charAt(0).toUpperCase() + user.slice(1)}. You loose!`;
     } else {
         return `Wrong input given.`;
     }
